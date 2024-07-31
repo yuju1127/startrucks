@@ -1,0 +1,130 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Order Confirmation - Cake Store{% endblock %}
+
+{% block content %}
+<style>
+    .body{
+        background-color: aliceblue;
+    }
+    .register-container{
+        margin-top: 50px;
+    }
+    .card{
+        border-radius: 10px;
+    }
+</style>
+<h2>Order Confirmation</h2>
+<table class="table">
+    <!-- coffee -->
+    <thead>
+        <tr>
+            <th>Coffee</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart.cartitem_set.all %}
+        {% if item.coffees %}
+        <tr>
+            <td>{{ item.coffees.name }} </td>    
+            <td>{{ item.coffees_quantity }}</td>
+            <td>{{ item.coffees.price }}</td>
+            <td>
+                <a href="{% url 'order_increase' item.id  %}" class="btn btn-success btn-sm">+</a>
+                <a href="{% url 'order_decrease' item.id  %}" class="btn btn-warning btn-sm">-</a>
+                <a href="{% url 'order_delete' item.id  %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    <!--trappuccino-->
+    <thead>
+        <tr>
+            <th>Trappuccino</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart.cartitem_set.all %}
+        {% if item.trappuccinos %}
+        <tr>
+            <td>{{ item.trappuccinos.name }} </td>    
+            <td>{{ item.traps_quantity }}</td>
+            <td>{{ item.trappuccinos.price }}</td>
+            <td>
+                <a href="{% url 'order_increase' item.id %}" class="btn btn-success btn-sm">+</a>
+                <a href="{% url 'order_decrease' item.id %}" class="btn btn-warning btn-sm">-</a>
+                <a href="{% url 'order_delete' item.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    <!--cake-->
+    <thead>
+        <tr>
+            <th>Cake</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart.cartitem_set.all %}
+        {% if item.cakes %}
+        <tr>
+            <td>{{ item.cakes.name }} </td>    
+            <td>{{ item.cakes_quantity }}</td>
+            <td>{{ item.cakes.price }}</td>
+            <td>
+                {{ cart_item.id}}
+                <a href="{% url 'order_increase' item.id %}" class="btn btn-success btn-sm">+</a>
+                <a href="{% url 'order_decrease' item.id %}" class="btn btn-warning btn-sm">-</a>
+                <a href="{% url 'order_delete' item.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    <!--sandwich-->
+    <thead>
+        <tr>
+            <th>Sandwich</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart.cartitem_set.all %}
+        {% if item.sandwiches %}
+        <tr>
+            <td>{{ item.sandwiches.name }} </td>    
+            <td>{{ item.sands_quantity }}</td>
+            <td>{{ item.sandwiches.price }}</td>
+            <td>
+                <a href="{% url 'order_increase' item.id %}" class="btn btn-success btn-sm">+</a>
+                <a href="{% url 'order_decrease' item.id %}" class="btn btn-warning btn-sm">-</a>
+                <a href="{% url 'order_delete' item.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>Total Price: ${{ total_price }}</h3>
+{% for item in cart.cartitem_set.all %}
+<form method="post" action="{% url 'order_confirm' item.id %}">
+    {% csrf_token %}{% endfor %}
+    <button type="submit" class="btn btn-primary">Confirm Order</button>
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Sandwich - StarTrucks{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% for san in sand %}
+    <div class="col-md-4">
+        <div class="card">
+            <img src="{{ san.images.url }}" class="card-img-top" alt="{{ san.name }}">
+            <div class="card-body">    
+                <h5 class="card-title">{{ san.name }}</h5>
+                <h5 class="card-text">${{ san.price }}</h5>
+                <a href="{% url 'order_sandwich' san.id %}" class="btn btn-success">Order</a>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+
+{% endblock %}

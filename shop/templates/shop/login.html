@@ -1,0 +1,12 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Login-Cake Store{% endblock %}
+
+{% block content %}
+    <h1 id="login">login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+{% endblock %}

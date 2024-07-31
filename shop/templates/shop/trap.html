@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Trappuccino - StarTrucks{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% for tra in trap %}
+    <div class="col-md-4">
+        <div class="card">
+            <img src="{{ tra.images.url }}" class="card-img-top" alt="{{ tra.name }}">
+            <div class="card-body">    
+                <h5 class="card-title">{{ tra.name }}</h5>
+                <h5 class="card-text">${{ tra.price }}</h5>
+                <a href="{% url 'order_trappuccino' tra.id %}" class="btn btn-success">Order</a>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+
+{% endblock %}

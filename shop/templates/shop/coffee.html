@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Coffee - StarTrucks{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% for cafe in coffee %}
+    <div class="col-md-4">
+        <div class="card">
+            <img src="{{ cafe.images.url }}" class="card-img-top" alt="{{ cafe.name }}">
+            <div class="card-body">    
+                <h5 class="card-title">{{ cafe.name }}</h5>
+                <h5 class="card-text">${{ cafe.price }}</h5>
+                <a href="{% url 'order_coffee' cafe.id %}" class="btn btn-success">Order</a>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+
+{% endblock %}

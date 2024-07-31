@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Home - StarTrucks{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div id="myCarousel" class="carousel slide" data-pause="false" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active ">
+        <img src="{% static 'img/4.jpg' %}" class="d-block w-100" alt="slide">
+      </div>
+      <div class="carousel-item ">
+        <img src="{% static 'img/building2.jpg' %}" class="d-block w-100" alt="slide.">
+      </div>
+      <div class="carousel-item ">
+        <img src="{% static 'img/building4.jpg' %}" class="d-block w-100" alt="slide">
+      </div>
+    </div>
+</div>
+
+{% endblock %}
